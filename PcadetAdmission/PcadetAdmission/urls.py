@@ -15,13 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from admissionlogin import views
+from admissionlogin import views as lg
+from admissDetail import views as ad
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('', views.index,name='index'),
+    path('', ad.IndexView.as_view(),name='index'),
+    # path('', lg.index,name='index'),
     path('admin/', admin.site.urls),
-    path('special/', views.special,name='special'),
+    path('special/', lg.special,name='special'),
     path('admissionlogin/', include('admissionlogin.urls')),
-    path('logout/', views.user_logout, name='logout'),
+    path('logout/', lg.user_logout, name='logout'),
+    path('admissDetail/',include('admissDetail.urls') )
 ]
