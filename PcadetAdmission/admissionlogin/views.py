@@ -7,15 +7,18 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
+
 # Create your views here.
 def index(request):
     return render(request,'admissionlogin/index.html')
+
 
 @login_required
 def special(request):
     # Remember to also set login url in settings.py!
     # LOGIN_URL = '/admissionlogin/user_login/'
     return HttpResponse("You are logged in. Nice!")
+
 
 @login_required
 def user_logout(request):
@@ -24,8 +27,19 @@ def user_logout(request):
     # Return to homepage.
     return HttpResponseRedirect(reverse('index'))
 
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
 def register(request):
     registered = False
+    # ip_student = get_client_ip(request)
     if request.method == 'POST':
         # Get info from "both" forms
         # It appears as one form to the user on the .html page

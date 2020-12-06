@@ -6,6 +6,17 @@
     <h1>ขอต้อนรับสู่ การสมัครสอบเข้าโรงเรียนเตรียมทหารในส่วนของ กองทัพบก </h1>
     {% if user.is_authenticated %}
         <h2>ขอต้อนรับ {{ user.username }}!</h2>
+
+      {% if user.is_staff %}
+        <p><a href="{% url 'admin:index' %}">Admin Panel</a></p>
+        <p>{{ ip }}</p>
+    {% else %}
+
+        <p><a href="{% url 'logout' %}">logout</a></p>
+     {% endif %}
+
+
+
     {% else %}
         <h2></h2>
     {% endif %}

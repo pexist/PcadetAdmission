@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
-from django.shortcuts import render
+from django.contrib.gis.geoip2 import GeoIP2
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.views.generic import (View,TemplateView,
@@ -8,6 +7,20 @@ from django.views.generic import (View,TemplateView,
                                 CreateView,DeleteView,
                                 UpdateView)
 from . import models
+from . import views
+
+
+def get_client_ip(request):
+    g = GeoIP2()
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for
+        city = g.city(ip)
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+        city = g.city(ip)
+    return ip, city
+
 
 # Pretty simple right?
 class IndexView(TemplateView):
@@ -17,8 +30,24 @@ class IndexView(TemplateView):
 
     def get_context_data(self,**kwargs):
         context  = super().get_context_data(**kwargs)
+        # ip,city = get_client_ip(self.request)
         context['injectme'] = "Test Injection!"
+        # context['ip'] = ip
+        # context['message'] = "message"
+        # context['city'] = city
+
         return context
+
+        ## Error return 127.0.0.1
+        # def get_context_data(self,**kwargs):
+        # context  = super().get_context_data(**kwargs)
+        # ip,city = get_client_ip(self.request)
+        # context['injectme'] = "Test Injection!"
+        # context['ip'] = ip
+        # context['message'] = "message"
+        # context['city'] = city
+        #
+        # return context
 
 
 class StudentListView(ListView):

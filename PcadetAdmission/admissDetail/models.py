@@ -12,7 +12,6 @@ class Student(models.Model):
         ('mx', 'อื่นๆ'),
     )
 
-
     id = models.AutoField(primary_key = True)
     name = models.CharField(max_length=256)
     surname = models.CharField(max_length=256)

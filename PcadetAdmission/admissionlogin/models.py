@@ -13,7 +13,8 @@ class UserProfileInfo(models.Model):
 
     # Create relationship (don't inherit from User!)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
+    ip_from   = models.CharField(max_length=100)
+    id_student   = models.IntegerField(null=True)
     # Add any additional attributes you want
     portfolio_site = models.URLField(blank=True)
     # pip install pillow to use this!
