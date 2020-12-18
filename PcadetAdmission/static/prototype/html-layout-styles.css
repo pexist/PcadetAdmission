@@ -1,0 +1,86 @@
+@charset 'UTF-8';
+
+html,
+html * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: arial, sans-serif;
+  font-size: 1vw;
+  background: white;
+}
+header {
+  position: fixed;
+  padding: 2em;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background:rgba(0,0,0,0.2);
+}
+nav {
+  z-index: 400;
+  top: 0;
+  left: 0;
+  opacity: .95;
+  background: #fff;
+  position: relative;
+  display: block !important;
+  float: right;
+  width: 30%;
+  padding: .75em 1em 0 0;
+  height: 1.5em;
+}
+.hero {
+  position: relative;
+  height: 54vw;
+  background-color: #a2f92f;
+}
+.intro {
+  position: relative;
+  color: #343144;
+  background: #fff;
+  height: 30vw;
+  padding: 9em 6em 5em;
+}
+
+.artworks {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.artwork {
+  display: flex;
+}
+
+.artwork .artwork-piece {
+  padding: 8% 0 8% 23.5%;
+  background-image:-moz-linear-gradient( 135deg, rgb(160,55,220) 0%, rgb(83,200,234) 100%);
+  background-image: -webkit-linear-gradient( 135deg, rgb(160,55,220) 0%, rgb(83,200,234) 100%);
+  background-image: -ms-linear-gradient( 135deg, rgb(160,55,220) 0%, rgb(83,200,234) 100%);
+  width: 50%;
+}
+.artwork figure {
+  position: relative;
+  vertical-align: middle;
+  padding: 50% 10%;
+  background: #cef0f2;
+}
+.artwork .artwork-description {
+  background: #26223e;
+  width: 50%;
+  padding: 11.25em 10em 11.5em;
+}
+
+footer {
+  margin-top: -3em;
+  padding: 8.75em 0 2em;
+  height: 10vw;
+  background-image:-moz-linear-gradient( -45deg, rgb(255,91,127) 0%, rgb(255,213,86) 100%);
+  background-image: -webkit-linear-gradient( -45deg, rgb(255,91,127) 0%, rgb(255,213,86) 100%);
+  background-image: -ms-linear-gradient( -45deg, rgb(255,91,127) 0%, rgb(255,213,86) 100%);
+}
