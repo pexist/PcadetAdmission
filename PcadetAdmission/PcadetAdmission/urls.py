@@ -27,5 +27,6 @@ urlpatterns = [
     path('special/', lg.special,name='special'),
     path('admissionlogin/', include('admissionlogin.urls')),
     path('logout/', lg.user_logout, name='logout'),
-    path('admissDetail/',include('admissDetail.urls') )
+    path('admissDetail/',include('admissDetail.urls')),
+    path('pca65/',include('pca65.urls'))
 ]

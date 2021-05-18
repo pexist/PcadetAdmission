@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_block %}
+    เข้ารับสมัครสอบ ประจำปี 2565
+{% endblock %}
+
+{% block body_block %}
+
+
+
+    <table align="center">
+        <tbody>
+        <div id="wrapper">
+            <form method="POST">  {% comment %}action= {% url 'pca65:success' %}>{% endcomment %}
+                <div class='vTextField'>
+                    {{ form.ID13.errors }}
+                    <label for="{{ form.ID13.id_for_label }}">เลขประจำตัวประชาชนผู้สมัคร</label>
+                    <p>
+                        {{ form.ID13 }}
+                    </p>
+                </div>
+                <div class='checkbox-row'>
+                    {{ form.confirmed.errors }}
+                    {{ form.confirmed }}
+                    <label for="{{ form.confirmed.id_for_label }}">ยืนยันเลขประจำตัวประชาชน</label>
+                </div>
+                {#                {{ form.as_p }}#}
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary" value="ตรวจสอบเลขประจำตัวประชาชน">
+            </form>
+        </div>
+
+
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

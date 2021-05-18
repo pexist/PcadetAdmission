@@ -1,0 +1,37 @@
+&lt;%
+	TempTID = request.Form("TID")
+	IF Len(TempTID) &lt;&gt; 6 then
+		Response.Redirect("DataCheck.asp")
+	End IF
+	TempID13 = Request.Form("ID13")
+	IF Len(TempID13) &lt;&gt; 13 then
+		Response.Redirect("DataCheck.asp")
+    End IF
+		Set Conn = Server.Createobject("ADODB.Connection")
+		Conn.Open "Driver={SQL Server};Server=Precadet64\sqlexpress;Database=pca65;UID=sa;PWD=nuuiim@2547!;"
+		SQL = "SELECT * From ID13IN Where TID="&amp;"'"&amp;TempTID&amp;"'"&amp;" And ID13="&amp;"'"&amp;TempID13&amp;"'"
+		Set Rs = Server.CreateObject("ADODB.Recordset")
+		Rs.Open SQL, Conn, 1,3
+		IF Not Rs.EOF Then
+			OK = 1
+			Stat = Rs("STAT")
+		Else
+			OK = 0
+			Response.Redirect("DataCheckNotFound.asp?ER="&amp;TempTID&amp;TempID13)
+		End IF
+		Rs.Close
+		Conn.Close
+		INTSTAT = Cint(STAT)
+		IF INTSTAT &gt; 6 And INTSTAT &lt; 9 Then
+			Set Conn = Server.Createobject("ADODB.Connection")
+			Conn.Open "Driver={SQL Server};Server=Precadet64\sqlexpress;Database=pca65;UID=sa;PWD=nuuiim@2547!;"
+			SQL = "SELECT * From pca65 Where TID="&amp;"'"&amp;TempTID&amp;"'"&amp;" And ID13="&amp;"'"&amp;TempID13&amp;"'"
+			Set Rs = Server.CreateObject("ADODB.Recordset")
+			Rs.Open SQL, Conn, 1,3
+				EXID = Rs("EXID")
+			Rs.Close
+			Conn.Close
+			Else
+				EXID = "ไม่มี"
+			End IF
+	%&gt;

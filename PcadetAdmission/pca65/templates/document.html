@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_block %}
+    เอกสารประกอบการสมัครสอบคัดเลือกนักเรียนเตรียมทหารในส่วนของกองทัพบก ประจำปี 2564
+{% endblock %}
+
+{% block body_block %}
+
+
+
+    <table align="center">
+        <tbody>
+        <div id="wrapper">
+            <embed src="{% static 'DOC/Document.pdf' %}" width="800px" height="2100px">
+        </div>
+
+
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

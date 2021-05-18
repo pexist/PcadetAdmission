@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'admissionlogin.apps.AdmissionloginConfig',
-    'admissDetail.apps.AdmissdetailConfig'
+    'admissDetail.apps.AdmissdetailConfig',
+    'pca65',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,9 @@ ROOT_URLCONF = 'PcadetAdmission.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(os.path.join(os.path.dirname(__file__)), 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,3 +133,8 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = '/admissionlogin/user_login/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+
+]

@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_block %}
+    ถาม ตอบ การสมัครสอบคัดเลือกนักเรียนเตรียมทหารในส่วนของกองทัพบก ประจำปี 2564
+{% endblock %}
+
+{% block body_block %}
+
+
+
+    <table align="center">
+        <tbody>
+        <div id="wrapper">
+            <td width="850" valign="top" align="left"><img src={% static "image/Ques.png" %} width="282"
+                                                           height="49"><br>
+                <table width="700" border="0" cellspacing="2" cellpadding="2">
+                    <tbody>
+                    <tr>
+                        <td width="55" rowspan="2"><img src={% static "image/qa.png" %} width="59" height="62"></td>
+                        <td colspan="2" class="QUES">Q: รับสมัครเพศหญิงหรือไม ?</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="ANSW" valign="top">A: รับเฉพาะเพศชาย</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td colspan="2">
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="55" rowspan="2"><img src={% static "image/qa.png" %} width="59" height="62"></td>
+                        <td colspan="2" valign="top" class="QUES">Q: รับสมัครอายุเท่าไร ?</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="ANSW" valign="top">A: รับสมัครอายุ อายุไม่ต่ากว่า 16 ปี และไม่เกิน 18 ปี
+                            ในปีที่จะเข้ารับการศึกษาเป็นนักเรียน <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp; เตรียมทหาร <font color="#FF0000">[</font><font color="#FF0000">
+                                ผู้ที่เกิดระหว่างวันที่ 1 มกราคม 2546 - 31 ธันวาคม 2548 <font
+                                    color="#FF0000">การนับอายุ</font><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;ให้นับตาม <a href="Answer/oldcheck.png" target="_blank">พรบ.รับราชการทหาร
+                                พ.ศ. 2497 มาตรา 4 (1) </a>] <a href={% static "Answer/PRB1.pdf" %} target="_blank">อ่าน
+                                พรบ. คลิกที่นี่</a></font></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td colspan="2">
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="55" rowspan="2" valign="top"><img src={% static "image/qa.png" %} width="59"
+                                                                     height="62"></td>
+                        <td colspan="2" class="QUES">Q: คุณวุฒิผู้สมัคร รับคุณวุฒิการศึกษาระดับไหน ?</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="ANSW">A: รับสมัครผู้สมัครที่มีคุณวุฒิ ชั้น ม.4 หรือเทียบเท่า
+                            ตามกฏกระทรวงศึกษาธิการ<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<font color="#FF0000">(สำหรับผู้ที่กำลังศึกษาอยู่ในระดับชั้น ม.4
+                                และยังไม่ทราบผลการศึกษา ในวัน<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;รายงานตัวสอบรอบสอง <font color="#FF0000">ต้องนำหนังสือรับรองการศึกษา
+                                    ว่ากำลังศึกษาอยู่ในระดับชั้น ม. 4 <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;ของสถานศึกษา มาแสดงต่อคณะกรรมการ<font color="#FF0000"><font
+                                            color="#FF0000"> รับรายงานตัว ณ กองอำนวยการ</font></font><font
+                                            color="#FF0000"><font color="#FF0000">รับรายงานตัว</font></font><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;สอบรอบสอง)</font></font></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td colspan="2">
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="55" rowspan="2" valign="top"><img src={% static "image/qa.png" %} width="59"
+                                                                     height="62"></td>
+                        <td colspan="2" class="QUES">Q: การขอใช้สิทธิ์คะแนนเพิ่ม / ผู้ที่มีความสามารถพิเศษทางการกีฬา /
+                            และการส่งหลักฐาน<br>
+                            <font color="#FF0000"><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;</font></font>
+                            เอกสารการขอใช้สิทธิ์คะแนนเพิ่ม ทำอย่างไร ?
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="ANSW" valign="top">A: การขอใช้สิทธิ์คะแนนเพิ่ม
+                            <blockquote>
+                                {#                                <img src={% static "image/dot.png" %} width="1%">#}
+                                คะแนนพิเศษ ตามข้อ 19.1, 19.2 และ 19.3
+                                ให้เพิ่มคะแนนพิเศษในรอบสอง หลังจากสอบผ่านภาควิชาการ<br>
+                                {#                                <img src={% static "image/dot.png" %} width="1%">#}
+                                คะแนนพิเศษ ตามข้อ 19.4 และ 19.5
+                                ให้เพิ่มคะแนนพิเศษ ในการสอบทุกรอบ<br><br>
+                                <font color="#FF0000">[ คะแนนพิเศษ ตามข้อ 19.2, 19.3, 19.4 และ 19.5 ให้เพิ่มเฉพาะกรณีที่
+                                    ได้คะแนน มากที่สุดแต่เพียงอย่างเดียว
+                                    ผู้ที่ได้เพิ่มคะแนน พิเศษ ตามข้อ 19.2, 19.3, 19.4, หรือ 19.5 ถ้าเป็นผู้สอบ
+                                    วิชาทหารได้ ตามความในข้อ 19.1 ก็ให้เพิ่มขึ้นอีก ในรอบสอง ตามเกณฑ์ของชั้นวิชา
+                                    ที่สอบได้ ]</font>
+                            </blockquote>
+                            A: ผู้ผ่านการสอบรอบแรก ที่มีความสามารถพิเศษทางการกีฬา<a
+                                    href={% static "Answer/sport.png" %} target="_blank"> อ่านรายละเอียด คลิกที่นี่ </a><br>
+
+                            A: การส่งหลักฐานเอกสารการขอใช้สิทธิ์คะแนนเพิ่ม ตามระเบียบการ ข้อ 19.4 และ 19.5<br>
+                            <blockquote>ผู้ผ่านการสอบรอบแรก มีสิทธิ์ขอคะแนนเพิ่มพิเศษตามระเบียบกองทัพไทย ว่าด้วย
+                                โรงเรียนเตรียมทหาร พ.ศ. 2561 ข้อ 19 ให้ส่งหลักฐานพร้อมลงลายมือชื่อรับรอง<br>
+                                สำเนาเอกสารทุกฉบับ ส่งด้วยตนเอง ณ โรงเรียนนายร้อย พระจุลจอมเกล้า จ.นครนายก
+                            </blockquote>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td colspan="2">
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="55" rowspan="2" valign="top"><img src={% static "image/qa.png" %} width="59"
+                                                                     height="62"></td>
+                        <td colspan="2" class="QUES">Q: การแต่งกายในการสอบรอบแรก ต้องแต่งตัวอย่างไร ?</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="ANSW">A: ผู้เข้าสอบแต่งภายในเครื่องแบบตามสถานศึกษาที่สังกัด
+                            กรณีผู้สอบเป็นสามเณร<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;แต่งกายตามกฏมหาเถรสมาคม
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td colspan="2">
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="55" rowspan="2" valign="top"><img src={% static "image/qa.png" %} width="59"
+                                                                     height="62"></td>
+                        <td colspan="2" class="QUES">Q: หลักฐานที่ผู้สอบผ่านรอบแรก จะต้องยื่นในวันประกาศผลสอบรอบแรก
+                            ใช้อะไรบ้าง ?
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="ANSW">A: หลักฐานที่ผู้สอบผ่านรอบแรก ดูรายละเอียดในระเบียบการ <a
+                                href={% url 'pca65:document' %}>คลิกที่นี่ </a> รายละเอียด <a
+                                href={% static "Answer/round1doc.png" %} target="_blank">คลิกที่นี่</a></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td colspan="2">
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="55" rowspan="2" valign="top"><img src={% static "image/qa.png" %} width="59"
+                                                                     height="62"></td>
+                        <td colspan="2" class="QUES">Q: การเตรียมตัวสอบรอบแรก ต้องเตรียมตัวอย่างไร ?</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="ANSW">A: การเตรียมตัวสอบรอบแรก ดูรายละเอียดในระเบียบการ <a
+                                href={% url 'pca65:document' %}>คลิกที่นี่ </a> รายละเอียด <a
+                                href={% static "Answer/exam.png" %} target="_blank">คลิกที่นี่</a></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td colspan="2">
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="55" rowspan="2" valign="top"><img src={% static "image/qa.png" %} width="59"
+                                                                     height="62"></td>
+                        <td colspan="2" class="QUES">Q: การเตรียมตัวสอบรอบสอง สอบอะไรบ้าง ต้องเตรียมตัวอย่างไร ?</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="ANSW">A: การเตรียมตัวสอบรอบสอง ดูรายละเอียดในระเบียบการ <a
+                                href={% url 'pca65:document' %}>คลิกที่นี่ </a></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td width="397">&nbsp;</td>
+                        <td width="228">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </div>
+
+
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

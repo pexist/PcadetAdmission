@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_block %}
+    การสมัครสอบคัดเลือกนักเรียนเตรียมทหารในส่วนของกองทัพบก ประจำปี 2564
+{% endblock %}
+
+{% block body_block %}
+
+
+    <table width="800" border="0" cellspacing="3" cellpadding="3" align="center">
+        <tbody>
+        <tr>
+            <td colspan="2" align="center"><font color="#6633FF"><strong>การสมัครสอบคัดเลือกนักเรียนเตรียมทหาร<br>ในส่วนของกองทัพบก
+                ประจำปี 2565</strong></font></td>
+        </tr>
+        <tr>
+            <td align="center"><p>&nbsp;</p>
+                <table width="400" border="0" cellspacing="3" cellpadding="3" align="center">
+                    <tbody>
+                    <tr>
+                        <td bgcolor="#DDE5D4"><p align="center"><a href=""><img src="{% static 'arm.png' %}"
+                                                                                width="120"></a></p>
+                            {#                            <p align="center"><a href=""><br>#}
+                            {#                                การสมัครแบบเฉพาะกลุ่ม</a><br>#}
+                            {#                                &nbsp;</p>#}
+                        </td>
+                        <a href="{% url 'pca65:bill' %}">
+                        <button name="menu" class="button"><img src="{% static 'image/home.png' %}" width="20"/>&nbsp;จ่ายตัง
+                        </button>
+                    </a>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+
+
+{% endblock %}
