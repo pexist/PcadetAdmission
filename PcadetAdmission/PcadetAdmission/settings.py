@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'admissionlogin.apps.AdmissionloginConfig',
     'admissDetail.apps.AdmissdetailConfig',
+    'widget_tweaks',
     'pca65',
 ]
 
