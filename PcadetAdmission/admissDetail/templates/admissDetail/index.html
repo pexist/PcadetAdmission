@@ -1,9 +1,15 @@
 {% extends "admissDetail/base.html" %}
+{% block title_block %}
+
+    admissDetail :: index
+{% endblock %}
+
 {% block body_block %}
 
 <div class="container">
   <div class="jumbotron">
-    <h1>ขอต้อนรับสู่ การสมัครสอบเข้าโรงเรียนเตรียมทหารในส่วนของ กองทัพบก </h1>
+    <h1>ขอต้อนรับสู่ DEMO การสมัครสอบเข้าโรงเรียนเตรียมทหารในส่วนของ กองทัพบก </h1>
+  <p><a href="{% url 'admin:login' %}">ทดสอบการเข้าสู้ระบบ</a></p>
     {% if user.is_authenticated %}
         <h2>ขอต้อนรับ {{ user.username }}!</h2>
 

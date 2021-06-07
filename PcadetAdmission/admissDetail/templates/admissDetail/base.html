@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>
-      CBVs
+      admissDetail.base.html ::
       {# Title Extensions go inside the block#}
       {% block title_block %}
 
@@ -20,9 +20,10 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="navbar-nav">
-        <a class="navbar-brand" href="{% url 'admissDetail:list' %}">Student</a>
-        <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin</a>
-        <a class="nav-item nav-link" href="{% url 'admissDetail:create' %}">Create admission</a>
+        <a class="navbar-brand" href="{% url 'admissDetail:list' %}">demo student</a>
+{#        <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin</a>#}
+        <a class="nav-item nav-link" href="{% url 'admissDetail:create' %}">Create student demo</a>
+          <a class="nav-item nav-link" href="{% url 'pca65:index' %}">ตัวอย่างปี 64 theme ระบบใหม่ปี 65</a>
       </div>
     </nav>
 

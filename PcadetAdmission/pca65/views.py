@@ -54,16 +54,16 @@ def entry(request):
             context = {'id13': form_id13}
             if idObj.exists():
                 print("user exists ")
-                return render(request, 'success.html', context)
+                return render(request, 'pca65/success.html', context)
             else:
                 return redirect('pca65:create')
                 # return render(request, 'create.html', context)
-    return render(request, 'entry.html',{'form':form})
+    return render(request, 'pca65/entry.html', {'form':form})
 
 def success(request):
     data = request.POST
     context = {'data': data}
-    return render(request, 'success.html', context)
+    return render(request, 'pca65/success.html', context)
 
 
 def dataCheck(request):
@@ -83,4 +83,4 @@ def contact(request):
     return render(request, 'contact.html')
 
 def bill(request):
-    return render(request, 'print_bill.htm')
+    return render(request, 'pca65/print_bill.htm')
