@@ -5,6 +5,13 @@ from enum import Enum
 from . import id13check
 
 
+class Image(models.Model):
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='images')
+
+    def __str__(self):
+        return self.title
+
 # Create your models here.
 class id13in(models.Model):
     AID = models.AutoField(primary_key=True, null=False)  # applicant for admission process, ID autogen
