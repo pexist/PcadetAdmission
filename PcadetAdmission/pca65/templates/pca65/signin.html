@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_block %}
+    PCADEMO65 %sign up% เข้ารับสมัครสอบ ประจำปี 2565
+{% endblock %}
+
+{% block body_block %}
+
+
+
+    <table align="center">
+        <tbody>
+        <div id="wrapper">
+            <form method="POST">  {% comment %}action= {% url 'pca65:success' %}>{% endcomment %}
+                <div class='vTextField'>
+                    {{ form.ID13.errors }}
+                    <label for="{{ form.ID13.id_for_label }}">เลขประจำตัวประชาชนผู้สมัคร</label>
+                    <p>
+                        {{ form.ID13 }}
+                    </p>
+                </div>
+                <div>
+                    {{ form.birthdate}}
+{#                    <fieldset class='birthday-picker'>#}
+{#                        <legend>{{ form.birthdate.label }}</legend>#}
+{#                        <select class='birth-year' name='birth[year]'></select>#}
+{#                        <select class='birth-month' name='birth[month]'></select>#}
+{#                        <select class='birth-day' name='birth[day]'></select>#}
+{#                        <input type='hidden' name='birthdate'/>#}
+{#                    </fieldset>#}
+                </div>
+                <div class='vTextField'>
+                    <div class='checkbox-row'>
+                        {{ form.confirmed.errors }}
+                        {{ form.confirmed }}
+                        <label for="{{ form.confirmed.id_for_label }}">ยืนยันเลขประจำตัวประชาชน</label>
+                    </div>
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-primary" value="ตรวจสอบสถานะผู้สมัคร">
+            </form>
+        </div>
+
+
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

@@ -26,6 +26,8 @@ class id13in(models.Model):
     def __str__(self):
         return self.ID13
 
+    def save(self,*args, **kwargs):
+        super().save(*args, **kwargs)
 
 class Student(models.Model):
     AID = models.ForeignKey(id13in, on_delete=models.CASCADE)

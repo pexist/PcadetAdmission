@@ -10,10 +10,73 @@
 
     <table align="center">
         <tbody>
-        Registration ID
-        status one Info (fill, verify, error)
-        status two Image
-        status three payment
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show">
+                    <strong>เลขที่ชำระเงิน {{ message }}</strong>
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <p> ชื่อ-นามสกุล :: XXX </p>
+        <p> วุฒิที่ใช้ในการสอบ :: YYY </p>
+
+        <table style="border-collapse: collapse; width: 50%; height: 54px;" border="1">
+            <tbody>
+            <tr style="height: 18px;">
+                <td style="width: 33.333333333333336%; height: 18px;">เลขที่ชำระเงิน</td>
+                <td style="width: 33.333333333333336%; height: 18px;">สถานะ</td>
+                <td style="width: 33.333333333333336%; height: 18px;"> พิมพ์บัตรประจำตัวสอบ</td>
+            </tr>
+            <tr style="height: 18px;">
+                <td style="width: 33.333333333333336%; height: 18px;">no</td>
+                <td style="width: 33.333333333333336%; height: 18px;">
+                    <table style="border-collapse: collapse; width: 100%; height: 54px;" border="1">
+                        <tbody>
+                        <tr style="height: 18px;">
+                            <td style="width: 33.333333333333336%; height: 18px;">status สมัครสอบ ข้อมูลไม่ครบ
+                                กรอกข้อมูล
+                            </td>
+                        </tr>
+                        <tr style="height: 18px;">
+                            <td style="width: 33.333333333333336%; height: 18px;">pic ไม่มีรูป รูปรอตรวจสอบ รูปสำเร็จ
+                            </td>
+                        </tr>
+                        <tr style="height: 18px;">
+                            <td style="width: 33.333333333333336%; height: 18px;">payment ชำระเงินแล้ว ยังไม่ได้ชำระเงิน
+                                พิมพ์ใบชำระเงิน
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td style="width: 33.333333333333336%; height: 18px;">link พิมพ์บัตรประจำตัวสอบ</td>
+            </tr>
+            </tbody>
+        </table>
+
+<p> </p>
+        <table border="1" align="left">
+            <tbody>
+            <tr>
+                <td rowspan="3">
+                    <p><span style="color: #ff0000;">หมายเหตุ</span></p>
+                </td>
+                <td>
+                    <pre>เครื่องหมาย picถูก หมายถึง ดำเนินการเรียบร้อยแล้ว</pre>
+                </td>
+            </tr>
+            <tr>
+                <td>เครื่องหมาย picwait หมายถึง รอการตรวจสอบจากเจ้าหน้าที่</td>
+            </tr>
+            <tr>
+                <td>
+                    <pre>เครื่องหมาย picผิด หมายถึง ยังไม่ได้ดำเนินการ</pre>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
 
         </tbody>
