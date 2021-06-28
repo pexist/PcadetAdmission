@@ -1,13 +1,14 @@
 # Create your views here.
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic import (DetailView,
                                   CreateView)
-from django.contrib import messages
+
 # from . import views
 from . import forms
 from . import models
-from .models import id13in
 from .forms import ImageForm
+from .models import id13in
 
 
 # first check for first time (sign up)
@@ -15,10 +16,10 @@ def entry(request):
     # todo make form for test 13ID
 
     # todo the session expire not setup. the logic might not be corrected
-    if request.session.has_key('currentID'):
-        messages.add_message(request,messages.SUCCESS,request.session['currentID'])
-        # messages.success(request,request.session['currentID'])
-        return redirect('pca65:pca_status')
+    # if request.session.has_key('currentID'):
+    #     messages.add_message(request, messages.SUCCESS, request.session['currentID'])
+    #     # messages.success(request,request.session['currentID'])
+    #     return redirect('pca65:pca_status')
 
     # gen from
     form = forms.FormEntry()
@@ -36,11 +37,13 @@ def entry(request):
                 # idObj = model.objects.filter(ID13__exact=form_id13)
             except:
                 idObj = None
+            finally:
+                pass
 
             context = {'id13': form_id13}
             if idObj is not None:
                 print("user exists ")
-                return redirect('pca65:pca_status',context)
+                return redirect('pca65:pca_status')
             else:
                 # todo create new application, redirect to sign in
                 application = id13in()
