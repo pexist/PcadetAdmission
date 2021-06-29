@@ -1,19 +1,39 @@
 {% extends "admissDetail/base.html" %}
 
 {% block body_block %}
-<h1>
-  {% if not form.instance.pk %}
-  Create Student
-  {% else %}
-  Update Student
-  {% endif %}
-</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class='btn btn-primary' value="Submit">
+    <h3>
+        {% if not form.instance.pk %}
+            กรอกข้อมูล ผู้สมัครสอบคัดเลือกนักเรียนเตรียมทหารในส่วนกองทัพบอก ประจำปี 2565
+        {% else %}
+            แก้ไข ผู้สมัครสอบคัดเลือกนักเรียนเตรียมทหารในส่วนกองทัพบอก ประจำปี 2565
+        {% endif %}
+    </h3>
+    <form method="POST">
+        {% csrf_token %}
 
-  </form>
+        {#    {{ form.as_p }}#}
+        <table border="1">
+            {% for field in form.visible_fields %}
+                <tr>
+                    <th bgcolor="#EAEFE5">
+                    {{ field.label_tag }}
+{#                        {%  if field.label_tag == 'Name' %}#}
+{#                        {{ 'ชื่อ' }}#}
+{#                    {%endif%}#}
+                    </th>
+                     <td  bgcolor="#6D9048">&nbsp;
+{#                    <td>#}
+                        {{ field.errors }}
+                        {{ field }}
+                        {{ field.help_text }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <input type="submit" class='btn btn-primary' value="Submit">
+
+    </form>
 
 
 {% endblock %}

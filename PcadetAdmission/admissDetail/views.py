@@ -2,12 +2,13 @@ from django.shortcuts import render
 from django.contrib.gis.geoip2 import GeoIP2
 from django.urls import reverse_lazy
 from django.http import HttpResponse
-from django.views.generic import (View,TemplateView,
-                                ListView,DetailView,
-                                CreateView,DeleteView,
-                                UpdateView)
+from django.views.generic import (View, TemplateView,
+                                  ListView, DetailView,
+                                  CreateView, DeleteView,
+                                  UpdateView)
 from . import models
 from . import views
+from django.utils.translation import gettext as _
 
 
 def get_client_ip(request):
@@ -28,8 +29,8 @@ class IndexView(TemplateView):
     # template_name = 'app_name/site.html'
     template_name = 'admissDetail/index.html'
 
-    def get_context_data(self,**kwargs):
-        context  = super().get_context_data(**kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         # ip,city = get_client_ip(self.request)
         context['injectme'] = "Test Injection!"
         # context['ip'] = ip
@@ -69,6 +70,27 @@ class StudentDetailView(DetailView):
 class StudentCreateView(CreateView):
     fields = '__all__'
     model = models.Student
+    # fields['name'].titl
+    # todo change label to Thai. how?
+    class Meta:
+        model = models.Student
+        # self.fields['name'].label = "ชื่อ"
+        fields = ('name', 'surname','age','personalID', 'education')
+        labels = {
+            'name': _('fuck'),
+        }
+        help_texts = {
+            'name': 'Some useful help text.',
+        }
+        error_messages = {
+            'name': {
+                'max_length': "This writer's name is too long.",
+            },
+        }
+
+    # def __init__(self, *args, **kwargs):
+    #     super(StudentCreateView, self).__init__(*args, **kwargs)
+    #     self.fields['name'].label = "ชื่อ"
 
 
 class StudentUpdateView(UpdateView):
@@ -82,6 +104,5 @@ class StudentDeleteView(DeleteView):
 
 
 class CBView(View):
-    def get(self,request):
+    def get(self, request):
         return HttpResponse('Class Based Views are Cool!')
-

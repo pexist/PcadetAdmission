@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Student
-from .models import id13in
+from .models import Applicant
+from .models import Login_log
 
 # Register your models here.
 
-admin.site.register(Student)
-admin.site.register(id13in)
+admin.site.register(Applicant)
+admin.site.register(Login_log)

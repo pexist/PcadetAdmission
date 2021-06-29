@@ -1,18 +1,19 @@
 {% extends "admissDetail/base.html" %}
 {% block body_block %}
   <div class="jumbotron">
-    <h1>Welcome to the Student Detail Page</h1>
-    <h2>student Details:</h2>
-    <p>Id_num: {{student_details.id}}</p>
-    <p>Name: {{student_details.name}}</p>
-    <p>Principal: {{student_details.surname}}</p>
-    <p>Location: {{student_details.age}}</p>
-    <p>Location: {{student_details.personalID}}</p>
-    <p>Location: {{student_details.education}}</p>
+    <h1>ข้อมูลผู้สมัครสอบคัดเลือกนักเรียนเตรียมทหารในส่วนกองทัพบอก ประจำปี 2565</h1>
+    <h2>รายละเอียดผู้สมัคร:</h2>
+    <p>หมายเลขใบสมัคร :: {{student_details.id}}</p>
+    <p>ชื่อ: {{student_details.name}}</p>
+    <p>นามสกุล: {{student_details.surname}}</p>
+    <p>วันเดือนปีเกิด: {{student_details.age}}</p>
+    <p>หมายเลขบัตรประชาชน: {{student_details.personalID}}</p>
+    <p>วุฒิการศึกษา: {{student_details.education}}</p>
 
   </div>
   <div class="container">
-    <p><a class='btn btn-warning' href="{% url 'admissDetail:update' pk=student_details.pk %}">Update</a></p>
+    <p><a class='btn btn-warning' href="{% url 'admissDetail:update' pk=student_details.pk %}">แก้ไข</a></p>
+    <p><a class='btn btn-warning' href="{% url 'admissDetail:delete' pk=student_details.pk %}">ลบ</a></p>
 
   </div>
 

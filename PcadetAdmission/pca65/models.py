@@ -1,8 +1,4 @@
 from django.db import models
-from django.urls import reverse
-from django.core.validators import MaxLengthValidator, MinLengthValidator
-from enum import Enum
-from . import id13check
 
 
 class Image(models.Model):
@@ -12,25 +8,24 @@ class Image(models.Model):
     def __str__(self):
         return self.title
 
-# Create your models here.
-class id13in(models.Model):
-    AID = models.AutoField(primary_key=True, null=False)  # applicant for admission process, ID autogen
-    TID = models.CharField(max_length=10, null=True)  # test ID
-    ID13 = models.CharField(max_length=13, null=True,help_text="หมายเลขบัตรประจำตัวประชาชน")  # Thai id number
-    Stat = models.CharField(max_length=2, null=False)  # status of applicant
-    DIN = models.CharField(max_length=10, null=True)  # ????
-    Piccomment = models.CharField(max_length=100, null=True)  # picture comment
-    registerDate = models.DateTimeField(auto_now=True)  # Keep access datetime
+
+# security login activity log.
+class Login_log(models.Model):
+    id = models.AutoField(primary_key=True, null=False)  # applicant for admission process, ID autogen
+    id_13 = models.CharField(max_length=13, null=True, help_text="หมายเลขบัตรประจำตัวประชาชน")  # Thai id number
+    login_Date = models.DateTimeField(auto_now=True)  # Keep access datetime
+    ip_address = models.GenericIPAddressField()
     # todo : keep all record that logged in.
 
     def __str__(self):
         return self.ID13
 
-    def save(self,*args, **kwargs):
+    def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-class Student(models.Model):
-    AID = models.ForeignKey(id13in, on_delete=models.CASCADE)
+
+class Applicant(models.Model):
+    AID = models.ForeignKey(Login_log, on_delete=models.CASCADE)
     TID = models.CharField(max_length=10, null=True)
     EXID = models.CharField(max_length=5, null=True)
     ID13 = models.CharField(max_length=13, null=True)
@@ -78,6 +73,7 @@ class Student(models.Model):
     DateREC = models.DateTimeField(null=True)
     DatePrintForm = models.DateTimeField(null=True)
     DatePAY = models.DateTimeField(null=True)
+
     # school = models.ForeignKey(School,related_name='students',on_delete=models.CASCADE)
 
     def __str__(self):

@@ -1,5 +1,6 @@
 # Create your views here.
-from django.contrib import messages
+import datetime
+
 from django.shortcuts import render, redirect
 from django.views.generic import (DetailView,
                                   CreateView)
@@ -8,7 +9,7 @@ from django.views.generic import (DetailView,
 from . import forms
 from . import models
 from .forms import ImageForm
-from .models import id13in
+from .models import Login_log
 
 
 # first check for first time (sign up)
@@ -26,32 +27,52 @@ def entry(request):
     # if submit
     if request.method == 'POST':
         form = forms.FormEntry(request.POST)
+        x_forward = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forward:
+            ipaddress = x_forward.split(',')[-1].strip()
+        else:
+            ipaddress = request.META.get('REMOTE_ADDR')
         if form.is_valid():
             # todo need id13 validation
             form_id13 = form.cleaned_data['ID13']
-            print('ID13  :: ' + form_id13)  # todo make log file
             request.session['currentID'] = form_id13
+
+            login_track = Login_log()
             # todo find the better way to check database
             try:
-                idObj = id13in.objects.get(ID13__exact=form_id13)
+                print("try to get user :: " + form_id13)
+                id_Obj = Login_log.objects.filter(id_13__exact=form_id13).count()
                 # idObj = model.objects.filter(ID13__exact=form_id13)
-            except:
-                idObj = None
+            except Exception as e:
+                id_Obj = None
+                print("no user")
+                print(e)
             finally:
                 pass
 
-            context = {'id13': form_id13}
-            if idObj is not None:
-                print("user exists ")
-                return redirect('pca65:pca_status')
-            else:
-                # todo create new application, redirect to sign in
-                application = id13in()
-                application.ID13 = form_id13
-                application.save()
-                return render(request, 'pca65/student_form.html', context)
+            # save DB for tracking
+            login_track = Login_log()
+            login_track.id_13 = form_id13
+            # print('ID13  :: ' + form_id13)  # todo make log file
+            login_track.ip_address = ipaddress
+            # print('IP  :: ' + ipaddress)  # todo make log file
+            login_track.login_Date = datetime.datetime.now()
+            # print('Date  :: ' + str(datetime.datetime.now()))  # todo make log file
+            login_track.save()
 
+            # if id_Obj is not None:
+            if id_Obj is not 0:
+                # todo create new application, redirect to sign in ...
+                #  after check main application database
+                print("user exists ")
+                # return redirect('pca65:pca_status')
+                return redirect('pca65:sign_in')
+            else:
+                # new customer
+                context = {'id13': form_id13}
+                return render(request, 'pca65/student_form.html', context)
                 # return render(request, 'create.html', context)
+
     return render(request, 'pca65/entry.html', {'form': form})
 
 
@@ -60,7 +81,7 @@ def sign_in(request):
     # todo if session login, goto status page, otherwise login
     # todo query error, no BD yet
     form = forms.FormSignIn()
-    model = models.id13in
+    model = models.Login_log
 
     if request.method == 'POST':
         form = forms.FormSignIn(request.POST)
@@ -71,7 +92,7 @@ def sign_in(request):
 
             try:
                 # idObj = id13in.objects.filter(ID13__exact=form_id13, BD__exact =  form_bd)
-                idObj = id13in.objects.filter(ID13__exact=form_id13)
+                idObj = Login_log.objects.filter(ID13__exact=form_id13)
                 # idObj = model.objects.filter(ID13__exact=form_id13)
             except:
                 idObj = None
@@ -130,13 +151,13 @@ def success(request):
 # todo make nice table
 class StudentCreateView(CreateView):
     fields = '__all__'
-    model = models.Student
+    model = models.Applicant
 
 
 # student detail
 class StudentDetailView(DetailView):
     context_object_name = 'student_details'
-    model = models.Student
+    model = models.Applicant
     template_name = 'pca65/student_detail.html'
 
 
