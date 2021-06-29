@@ -36,6 +36,13 @@ class FormSignIn(forms.Form):
     confirmed = forms.BooleanField()
 
 
+class FormSignIn(forms.Form):
+    ID13 = forms.CharField(max_length=13)  # Thai id number
+    # birthdate = forms.DateField(label='วันเกิดผู้สมัคร', widget=forms.SelectDateWidget)  # BD
+    birthdate = forms.DateField(label='วันเกิดผู้สมัคร', widget=forms.NumberInput(attrs={'type':'date'}))  # BD
+    confirmed = forms.BooleanField()
+
+
 class ImageForm(forms.ModelForm):
     """Form for the image model"""
     class Meta:

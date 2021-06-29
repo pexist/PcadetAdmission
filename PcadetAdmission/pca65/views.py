@@ -65,8 +65,8 @@ def entry(request):
                 # todo create new application, redirect to sign in ...
                 #  after check main application database
                 print("user exists ")
-                # return redirect('pca65:pca_status')
-                return redirect('pca65:sign_in')
+                return redirect('pca65:pca_status')
+                # return redirect('pca65:sign_in')
             else:
                 # new customer
                 context = {'id13': form_id13}
@@ -114,10 +114,10 @@ def pca_status(request):
     return render(request, 'pca65/status.html')
 
 
-# upload image
-def upload(request):
-    # todo make form for student status with 13ID and registration_id
-    return render(request, 'pca65/upload.html')
+# # upload image
+# def upload(request):
+#     # todo make form for student status with 13ID and registration_id
+#     return render(request, 'pca65/upload.html')
 
 
 def image_upload_view(request):
@@ -132,6 +132,8 @@ def image_upload_view(request):
     else:
         form = ImageForm()
     return render(request, 'pca65/upload.html', {'form': form})
+
+
 
 
 # print payment detail

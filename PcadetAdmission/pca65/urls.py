@@ -1,6 +1,7 @@
 from django.urls import path
-
+from django.conf.urls.static import static
 from . import views
+from django.conf import settings
 
 # SET THE NAMESPACE!
 app_name = 'pca65'
@@ -32,3 +33,6 @@ urlpatterns = [
     path('document', views.document, name='document'),
     path('contact', views.contact, name='contact'),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

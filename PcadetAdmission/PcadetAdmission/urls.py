@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings # new
+from django.conf.urls.static import static # new
+
 
 from admissionlogin import views as lg
 from admissDetail import views as ad
@@ -34,3 +37,6 @@ urlpatterns = [
 
     path('pca65/',include('pca65.urls'))
 ]
+
+if settings.DEBUG: # new
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
