@@ -34,29 +34,38 @@
                 <td style="width: 33.333333333333336%; height: 18px;">
                     <table style="border-collapse: collapse; width: 100%; height: 54px;" border="1">
                         <tbody>
-                        <a href="{% url 'pca65:upload' %}">
-                        <button name="menu" class="button">รูปถ่าย</button>
-                    </a>
+
 
 
                         <tr style="height: 18px;">
-                            <td style="width: 33.333333333333336%; height: 18px;">status สมัครสอบ ข้อมูลไม่ครบ
+                            <td style="width: 33.333333333333336%; height: 18px;"> <a href="{% url 'pca65:pca_form' %}">
+                        <button name="menu" class="button">เปลี่ยนแปลงข้อมํูล</button>
+                    </a>
+                                status สมัครสอบ ข้อมูลไม่ครบ
                                 กรอกข้อมูล
                             </td>
                         </tr>
                         <tr style="height: 18px;">
-                            <td style="width: 33.333333333333336%; height: 18px;">pic ไม่มีรูป รูปรอตรวจสอบ รูปสำเร็จ
+                            <td style="width: 33.333333333333336%; height: 18px;"> <a href="{% url 'pca65:upload' %}">
+                        <button name="menu" class="button">ส่งรูปถ่าย</button>
+                    </a>
+                                pic ไม่มีรูป รูปรอตรวจสอบ รูปสำเร็จ
                             </td>
                         </tr>
                         <tr style="height: 18px;">
-                            <td style="width: 33.333333333333336%; height: 18px;">payment ชำระเงินแล้ว ยังไม่ได้ชำระเงิน
+                            <td style="width: 33.333333333333336%; height: 18px;"><a href="{% url 'pca65:bill' %}">
+                        <button name="menu" class="button">พิมพ์ใบชำระเงิน</button>
+                    </a>
+                                payment ชำระเงินแล้ว ยังไม่ได้ชำระเงิน
                                 พิมพ์ใบชำระเงิน
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </td>
-                <td style="width: 33.333333333333336%; height: 18px;">link พิมพ์บัตรประจำตัวสอบ</td>
+                <td style="width: 33.333333333333336%; height: 18px;"><a href="{% url 'pca65:exam_card' %}">
+                        <button name="menu" class="button">พิมพ์บัตรประจำตัวสอบ</button>
+                </td>
             </tr>
             </tbody>
         </table>

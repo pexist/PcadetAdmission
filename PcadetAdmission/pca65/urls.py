@@ -16,6 +16,8 @@ urlpatterns = [
 
     path('upload/', views.image_upload_view, name='upload'),
     path('bill', views.bill, name='bill'),
+    path('pca_form', views.pca_form, name='pca_form'),
+    path('exam_card', views.exam_card, name='exam_card'),
     path('success', views.success, name='success'),
 
 

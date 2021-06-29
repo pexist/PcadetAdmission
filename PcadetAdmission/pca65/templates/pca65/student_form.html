@@ -2,253 +2,337 @@
 {% load widget_tweaks %}
 
 {% block body_block %}
-<h1>
-  {% if not form.instance.pk %}
-  Create Student
-  {% else %}
-  Update Student
-  {% endif %}
-</h1>
-  <form method="POST">
-    {% csrf_token %}
+    <h1>
+        {% if not form.instance.pk %}
+            กรอกข้อมูล ผู้สมัครสอบคัดเลือกนักเรียนเตรียมทหารในส่วนกองทัพบอก ประจำปี 2565
+        {% else %}
+            แก้ไข ผู้สมัครสอบคัดเลือกนักเรียนเตรียมทหารในส่วนกองทัพบอก ประจำปี 2565
+        {% endif %}
+    </h1>
+    <form method="POST">
+        {% csrf_token %}
 
-{#    {{ form.as_p }}#}
-      {{ form.non_field.errors }}
-      <table border="1">
+        {#    {{ form.as_p }}#}
+        {{ form.non_field.errors }}
+        <table border="1">
 
-      <tbody><tr>
-          <td colspan="3" bgcolor="#6D9048">&nbsp;</td>
-          </tr>
-        <tr>
-          <td width="178" align="right" bgcolor="#EAEFE5">หมายเลขใบสมัคร :</td>
-          <td colspan="2" bgcolor="#EAEFE5">&nbsp;&lt;%=TID%&gt;<input name="HIDTID" type="hidden" value="<%=TID%>">&nbsp;&nbsp;&nbsp;&nbsp;เลขประจำตัวประชาชน : &lt;%=ID13%&gt;
-            <input type="hidden" name="HIDID13" id="hiddenField" value="<%=ID13%>"></td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#EAEFE5">วันเดือนปีเกิด : </td>
-          <td width="425" bgcolor="#EAEFE5">&nbsp;&lt;%
-		  Response.Write("<select name="BD">")
-		  For i = 1 To 31
-		  	Response.Write("<option value="&amp;i&amp;">"&amp;i&amp;"</option>")
-		  Next
-		  Response.Write("</select>&nbsp;")
-		  SPM = Split("-,ม.ค.,ก.พ.,มี.ค.,เม.ย.,พ.ค.,มิ.ย.,ก.ค.,ส.ค.,ก.ย.,ต.ค.,พ.ย.,ธ.ค.",",")
-		  Response.Write("เดือน : <select name="BM">")
-		  For i = 1 to 12
-		  	response.Write("<option value="&amp;i&amp;">"&amp;SPM(i)&amp;"</option>")
-		  Next
-		  Response.Write("</select>&nbsp;")
-		  SY = 2546
-		  EY = 2548
-		  response.Write("พ.ศ.&nbsp;<select name="BY">")
-		  For i =  SY To EY
-		  	Response.Write("<option value="&amp;i&amp;">"&amp;i&amp;"</option>")
-		  Next
-		  response.Write("</select>")
-		  %&gt;</td>
-          <td width="191" rowspan="10" align="center" bgcolor="#EAEFE5" valign="top"><br><img src="/PICTEMP/2/<%=ID13%>.jpg" width="152" height="212"></td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#EAEFE5">ชื่อผู้สมัคร : </td>
-          <td bgcolor="#EAEFE5">&nbsp;<input name="FName" type="text" size="18" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);" onkeyup="isThaivar(this.value,this)" placeholder="ไม่ต้องพิมพ์คำนำหน้าชื่อ">&nbsp;&nbsp;
- <!-- พิมพ์ได้เฉพาะตัวอักษรไทย และช่องว่าง ไม่มีตัวเลข -->
-นามสกุล : <input name="LName" type="text" size="18" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);" onkeyup="isThaivar(this.value,this)"></td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#EAEFE5">สัญชาติ : </td>
-          <td bgcolor="#EAEFE5">&nbsp;<select name="Nation">
-            <option value="1"> ไทยโดยกำเนิด</option>
-            <option value="2"> อื่น ๆ</option>
-          </select>
-            ศาสนา : <select name="Religion">
-          <option value="พ">พุทธ</option>
-          <option value="ค">คริสต์</option>
-          <option value="ล">อิสลาม</option>
-          <option value="ฮ">ฮินดู</option>
-          <option value="อ">อื่น ๆ</option>
-          </select></td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#FFCCCC" valign="top">จังหวัดตามภูมิลำเนา :</td>
-          <td bgcolor="#FFCCCC">&nbsp;&lt;%
-			Set Conn = Server.Createobject("ADODB.Connection")
-			Conn.Open "Driver={SQL Server};Server=Precadet64\sqlexpress;Database=PCA64;UID=sa;PWD=nuuiim@2547!;"
-			SQL = "SELECT * FROM Province Order by ID"
-			Set Rs = Server.CreateObject("ADODB.Recordset")
-			Rs.Open SQL, Conn, 1,3
-			Response.Write("<select name="LProvince">")
-			Do While Not Rs.EOF
-				Response.Write("<option value="&amp;Rs(" id")&"="">"&amp;Rs("PName"))
-				Response.Write("&nbsp;กองทัพภาค "&amp;Rs("APart")&amp;"</option>")
-			Rs.MoveNext
-			Loop
-			Response.Write("</select>")
-			Rs.Close
-			Conn.close
+            <tbody>
+            <tr>
+                <td colspan="3" bgcolor="#6D9048">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="178" align="right" bgcolor="#EAEFE5">หมายเลขใบสมัคร :</td>
+                <td colspan="2" bgcolor="#EAEFE5"> {{ tid }} 000005 <input name="HIDTID" type="hidden" value="<%=TID%>">&nbsp;&nbsp;&nbsp;&nbsp;เลขประจำตัวประชาชน
+                    : {{ id13 }}111111111119
+                    <input type="hidden" name="HIDID13" id="hiddenField" value="<%=ID13%>"></td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#EAEFE5">วันเดือนปีเกิด :</td>
+                <td width="425" bgcolor="#EAEFE5"><input type="date" id="birthday" name="birthday">
 
-			  %&gt;
-          <br>
-          <font color="#FF0000">&nbsp;** กรณีมีการระบาดของ Covid - 19 ต้องสอบภายในภูมิภาค</font></td>
-        </tr>
-        <tr>
-          <td align="right" bgcolor="#EAEFE5">คุณวุฒิที่ใช้ในการสมัคร : </td>
-          <td bgcolor="#EAEFE5">&nbsp;<select name="EDUEN">
-          <option value="4">ม.4</option>
-          <option value="5">ม.5</option>
-          <option value="6">ม.6</option>
-          <option value="7">เทียบเท่าชั้น ม.4</option>
-          </select></td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#EAEFE5">การศึกษาปัจจุบัน : </td>
-          <td bgcolor="#EAEFE5">&nbsp;<select name="EDU">
-                <option value="4">กำลังศึกษาอยู่ ชั้น ม.4</option>
-                <option value="5">กำลังศึกษาอยู่ ชั้น ม.5</option>
-                <option value="6">กำลังศึกษาอยู่ ชั้น ม.6</option>
-                <option value="7">กำลังศึกษาอยู่ในระดับอื่น</option>
-                <option value="8">พักการศึกษา</option>
-              </select>
-              จังหวัด :
-              &lt;%
-			Set Conn = Server.Createobject("ADODB.Connection")
-			Conn.Open "Driver={SQL Server};Server=Precadet64\sqlexpress;Database=PCA64;UID=sa;PWD=nuuiim@2547!;"
-			SQL = "SELECT * FROM Province Order by ID"
-			Set Rs = Server.CreateObject("ADODB.Recordset")
-			Rs.Open SQL, Conn, 1,3
-			Response.Write("<select name="Province">")
-			Do While Not Rs.EOF
-				Response.Write("<option value="&amp;Rs(" id")&"="">"&amp;Rs("PName")&amp;"</option>")
-			Rs.MoveNext
-			Loop
-			Response.Write("</select>")
-			Rs.Close
-			Conn.close
+                    {#              &nbsp;&lt;%#}
+                    {#		  Response.Write("<select name="BD">")#}
+                    {#		  For i = 1 To 31#}
+                    {#		  	Response.Write("<option value="&amp;i&amp;">"&amp;i&amp;"</option>")#}
+                    {#		  Next#}
+                    {#		  Response.Write("</select>&nbsp;")#}
+                    {#		  SPM = Split("-,ม.ค.,ก.พ.,มี.ค.,เม.ย.,พ.ค.,มิ.ย.,ก.ค.,ส.ค.,ก.ย.,ต.ค.,พ.ย.,ธ.ค.",",")#}
+                    {#		  Response.Write("เดือน : <select name="BM">")#}
+                    {#		  For i = 1 to 12#}
+                    {#		  	response.Write("<option value="&amp;i&amp;">"&amp;SPM(i)&amp;"</option>")#}
+                    {#		  Next#}
+                    {#		  Response.Write("</select>&nbsp;")#}
+                    {#		  SY = 2546#}
+                    {#		  EY = 2548#}
+                    {#		  response.Write("พ.ศ.&nbsp;<select name="BY">")#}
+                    {#		  For i =  SY To EY#}
+                    {#		  	Response.Write("<option value="&amp;i&amp;">"&amp;i&amp;"</option>")#}
+                    {#		  Next#}
+                    {#		  response.Write("</select>")#}
+                    {#		  %&gt;#}
 
-			  %&gt;
-           </td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#EAEFE5">ชื่อสถานศึกษา :</td>
-          <td bgcolor="#EAEFE5">
-           <!-- พิมพ์ได้เฉพาะตัวอักษรไทย ช่องว่าง และตัวเลขตัวเลข -->
-          &nbsp;<input name="SCHNAME" type="text" size="50" placeholder="เฉพาะชื่อโรงเรียน ไม่ต้องพิมพ์คำว่า รร. หรือ โรงเรียน" class="input-placeholder" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);" onkeyup="isThaichar(this.value,this)"></td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#EAEFE5">GPA ภาคการศึกษาล่าสุด :</td>
-          <td bgcolor="#EAEFE5">&nbsp;<input name="GPA" type="text" size="3" maxlength="4" onkeypress="return chkNumberd(this)" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);">
-          <font color="#FF0000"> ** ค่าระหว่าง 0.01 - 4.00 ทศนิยม 2 ตำแหน่ง</font></td>
-        </tr>
-        <tr>
-          <td align="right" bgcolor="#EAEFE5">หมายเลขโทรศัพท์ :</td>
-          <td bgcolor="#EAEFE5">&nbsp;<input name="STELL" type="text" size="14" maxlength="10" onkeypress="return chkNumber(this)" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);">&nbsp;<font color="#FF0000">** หมายเลขโทรศัพท์ที่ติดต่อผู้สมัครได้</font></td>
-          </tr>
-        <tr>
-          <td colspan="2" bgcolor="#EAEFE5"></td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#CEDAC3">ชื่อบิดาผู้ให้กำเนิด : </td>
-          <td colspan="2" bgcolor="#CEDAC3">&nbsp;<input name="FFName" type="text" size="15" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);" onkeyup="isThaivar(this.value,this)">&nbsp;นามสกุล : <input name="FLName" type="text" size="15" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);" onkeyup="isThaivar(this.value,this)"></td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#CEDAC3">เลขประจำตัวประชาชน : </td>
-          <td colspan="2" bgcolor="#CEDAC3">&nbsp;<input name="FID13" type="text" size="14" maxlength="13" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);" onkeypress="return chkNumber(this)">
-            สถานะ :
-            <select name="FStat">
-              <option value="1">มีชีวิต</option>
-              <option value="0">ถึงแก่กรรม</option>
-            </select></td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#CEDAC3">อาชีพบิดา :&nbsp;</td>
-          <td colspan="2" bgcolor="#CEDAC3">&nbsp;&lt;%
-			Set Conn = Server.Createobject("ADODB.Connection")
-			Conn.Open "Driver={SQL Server};Server=Precadet64\sqlexpress;Database=PCA64;UID=sa;PWD=nuuiim@2547!;"
-			SQL = "SELECT * FROM PROF Order by PROFID"
-			Set Rs = Server.CreateObject("ADODB.Recordset")
-			Rs.Open SQL, Conn, 1,3
-			Response.Write("<select name="FPROF">")
-			Do While Not Rs.EOF
-				Response.Write("<option value="&amp;Rs(" profid")&"="">"&amp;Rs("PROFName")&amp;"</option>")
-			Rs.MoveNext
-			Loop
-			Response.Write("</select>")
-			Rs.Close
-			Conn.close
+                </td>
+                <td width="191" rowspan="10" align="center" bgcolor="#EAEFE5" valign="top"><br> <img
+                        src="{{ img_obj.image.url }}" alt="connect" style="max-height:300px" width="152" height="212">
+                </td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#EAEFE5">ชื่อผู้สมัคร :</td>
+                <td bgcolor="#EAEFE5">&nbsp;<input name="FName" type="text" size="18" autocomplete="off"
+                                                   ondrag="return false;" ondrop="return false;" onpaste="return false;"
+                                                   onmousedown="noRightClick(event);" onkeydown="return noPaste(event);"
+                                                   onkeyup="isThaivar(this.value,this)"
+                                                   placeholder="ไม่ต้องพิมพ์คำนำหน้าชื่อ">&nbsp;&nbsp;
+                    <!-- พิมพ์ได้เฉพาะตัวอักษรไทย และช่องว่าง ไม่มีตัวเลข -->
+                    นามสกุล : <input name="LName" type="text" size="18" autocomplete="off" ondrag="return false;"
+                                     ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);"
+                                     onkeydown="return noPaste(event);" onkeyup="isThaivar(this.value,this)"></td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#EAEFE5">สัญชาติ :</td>
+                <td bgcolor="#EAEFE5">&nbsp;<select name="Nation">
+                    <option value="1"> ไทยโดยกำเนิด</option>
+                    <option value="2"> อื่น ๆ</option>
+                </select>
+                    ศาสนา : <select name="Religion">
+                        <option value="พ">พุทธ</option>
+                        <option value="ค">คริสต์</option>
+                        <option value="ล">อิสลาม</option>
+                        <option value="ฮ">ฮินดู</option>
+                        <option value="อ">อื่น ๆ</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#FFCCCC" valign="top">จังหวัดตามภูมิลำเนา :</td>
+                <td bgcolor="#FFCCCC"> <input name="FName" type="text" size="25" autocomplete="off"
+                                                   ondrag="return false;" ondrop="return false;" onpaste="return false;"
+                                                   onmousedown="noRightClick(event);" onkeydown="return noPaste(event);"
+                                                   onkeyup="isThaivar(this.value,this)"
+                                                   placeholder="** กรณีมีการระบาดของ Covid - 19 ต้องสอบภายในภูมิภาค">
+                    {#              &nbsp;&lt;%#}
+                    {#			Set Conn = Server.Createobject("ADODB.Connection")#}
+                    {#			Conn.Open "Driver={SQL Server};Server=Precadet64\sqlexpress;Database=PCA64;UID=sa;PWD=nuuiim@2547!;"#}
+                    {#			SQL = "SELECT * FROM Province Order by ID"#}
+                    {#			Set Rs = Server.CreateObject("ADODB.Recordset")#}
+                    {#			Rs.Open SQL, Conn, 1,3#}
+                    {#			Response.Write("<select name="LProvince">")#}
+                    {#			Do While Not Rs.EOF#}
+                    {#				Response.Write("<option value="&amp;Rs(" id")&"="">"&amp;Rs("PName"))#}
+                    {#				Response.Write("&nbsp;กองทัพภาค "&amp;Rs("APart")&amp;"</option>")#}
+                    {#			Rs.MoveNext#}
+                    {#			Loop#}
+                    {#			Response.Write("</select>")#}
+                    {#			Rs.Close#}
+                    {#			Conn.close#}
+                    {##}
+                    {#			  %&gt;#}
+                    <br>
+{#                    <font color="#FF0000">&nbsp;** กรณีมีการระบาดของ Covid - 19 ต้องสอบภายในภูมิภาค</font></td>#}
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#EAEFE5">คุณวุฒิที่ใช้ในการสมัคร :</td>
+                <td bgcolor="#EAEFE5">&nbsp;<select name="EDUEN">
+                    <option value="4">ม.4</option>
+                    <option value="5">ม.5</option>
+                    <option value="6">ม.6</option>
+                    <option value="7">เทียบเท่าชั้น ม.4</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#EAEFE5">การศึกษาปัจจุบัน :</td>
+                <td bgcolor="#EAEFE5">&nbsp;<select name="EDU">
+                    <option value="4">กำลังศึกษาอยู่ ชั้น ม.4</option>
+                    <option value="5">กำลังศึกษาอยู่ ชั้น ม.5</option>
+                    <option value="6">กำลังศึกษาอยู่ ชั้น ม.6</option>
+                    <option value="7">กำลังศึกษาอยู่ในระดับอื่น</option>
+                    <option value="8">พักการศึกษา</option>
+                </select>
+                    จังหวัด :<input name="Prov" type="text" size="18">
+                    {#              &lt;%#}
+                    {#			Set Conn = Server.Createobject("ADODB.Connection")#}
+                    {#			Conn.Open "Driver={SQL Server};Server=Precadet64\sqlexpress;Database=PCA64;UID=sa;PWD=nuuiim@2547!;"#}
+                    {#			SQL = "SELECT * FROM Province Order by ID"#}
+                    {#			Set Rs = Server.CreateObject("ADODB.Recordset")#}
+                    {#			Rs.Open SQL, Conn, 1,3#}
+                    {#			Response.Write("<select name="Province">")#}
+                    {#			Do While Not Rs.EOF#}
+                    {#				Response.Write("<option value="&amp;Rs(" id")&"="">"&amp;Rs("PName")&amp;"</option>")#}
+                    {#			Rs.MoveNext#}
+                    {#			Loop#}
+                    {#			Response.Write("</select>")#}
+                    {#			Rs.Close#}
+                    {#			Conn.close#}
+                    {##}
+                    {#			  %&gt;#}
+                </td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#EAEFE5">ชื่อสถานศึกษา :</td>
+                <td bgcolor="#EAEFE5">
+                    <!-- พิมพ์ได้เฉพาะตัวอักษรไทย ช่องว่าง และตัวเลขตัวเลข -->
+                    &nbsp;<input name="SCHNAME" type="text" size="50"
+                                 placeholder="เฉพาะชื่อโรงเรียน ไม่ต้องพิมพ์คำว่า รร. หรือ โรงเรียน"
+                                 class="input-placeholder" autocomplete="off" ondrag="return false;"
+                                 ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);"
+                                 onkeydown="return noPaste(event);" onkeyup="isThaichar(this.value,this)"></td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#EAEFE5">GPA ภาคการศึกษาล่าสุด :</td>
+                <td bgcolor="#EAEFE5">&nbsp;<input name="GPA" type="text" size="3" maxlength="4"
+                                                   onkeypress="return chkNumberd(this)" autocomplete="off"
+                                                   ondrag="return false;" ondrop="return false;" onpaste="return false;"
+                                                   onmousedown="noRightClick(event);"
+                                                   onkeydown="return noPaste(event);">
+                    <font color="#FF0000"> ** ค่าระหว่าง 0.01 - 4.00 ทศนิยม 2 ตำแหน่ง</font></td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#EAEFE5">หมายเลขโทรศัพท์ :</td>
+                <td bgcolor="#EAEFE5">&nbsp;<input name="STELL" type="text" size="14" maxlength="10"
+                                                   onkeypress="return chkNumber(this)" autocomplete="off"
+                                                   ondrag="return false;" ondrop="return false;" onpaste="return false;"
+                                                   onmousedown="noRightClick(event);"
+                                                   onkeydown="return noPaste(event);">&nbsp;<font color="#FF0000">**
+                    หมายเลขโทรศัพท์ที่ติดต่อผู้สมัครได้</font></td>
+            </tr>
+            <tr>
+                <td colspan="2" bgcolor="#EAEFE5"></td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#CEDAC3">ชื่อบิดาผู้ให้กำเนิด :</td>
+                <td colspan="2" bgcolor="#CEDAC3">&nbsp;<input name="FFName" type="text" size="15" autocomplete="off"
+                                                               ondrag="return false;" ondrop="return false;"
+                                                               onpaste="return false;"
+                                                               onmousedown="noRightClick(event);"
+                                                               onkeydown="return noPaste(event);"
+                                                               onkeyup="isThaivar(this.value,this)">&nbsp;นามสกุล :
+                    <input name="FLName" type="text" size="15" autocomplete="off" ondrag="return false;"
+                           ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);"
+                           onkeydown="return noPaste(event);" onkeyup="isThaivar(this.value,this)"></td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#CEDAC3">เลขประจำตัวประชาชน :</td>
+                <td colspan="2" bgcolor="#CEDAC3">&nbsp;<input name="FID13" type="text" size="14" maxlength="13"
+                                                               autocomplete="off" ondrag="return false;"
+                                                               ondrop="return false;" onpaste="return false;"
+                                                               onmousedown="noRightClick(event);"
+                                                               onkeydown="return noPaste(event);"
+                                                               onkeypress="return chkNumber(this)">
+                    สถานะ :
+                    <select name="FStat">
+                        <option value="1">มีชีวิต</option>
+                        <option value="0">ถึงแก่กรรม</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#CEDAC3">อาชีพบิดา :&nbsp;</td>
+                <td colspan="2" bgcolor="#CEDAC3"> <input name="occupation" type="text" size="14">
+{#                    &nbsp;&lt;%#}
+{#                    Set Conn = Server.Createobject("ADODB.Connection")#}
+{#                    Conn.Open "Driver={SQL Server};Server=Precadet64\sqlexpress;Database=PCA64;UID=sa;PWD=nuuiim@2547!;"#}
+{#                    SQL = "SELECT * FROM PROF Order by PROFID"#}
+{#                    Set Rs = Server.CreateObject("ADODB.Recordset")#}
+{#                    Rs.Open SQL, Conn, 1,3#}
+{#                    Response.Write("<select name="FPROF">")#}
+{#                        Do While Not Rs.EOF#}
+{#                        Response.Write("#}
+{#                        <option value="&amp;Rs(" profid#}
+{#                        ")&"="">"&amp;Rs("PROFName")&amp;"</option>")#}
+{#                        Rs.MoveNext#}
+{#                        Loop#}
+{#                        Response.Write("</select>")#}
+{#                    Rs.Close#}
+{#                    Conn.close#}
+{##}
+{#                    %&gt;&nbsp;&nbsp;#}
+                </td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#CEDAC3">หมายเลขโทรศัพท์ :</td>
+                <td colspan="2" bgcolor="#CEDAC3">&nbsp;<input name="FTELL" type="text" size="14" maxlength="10"
+                                                               onkeypress="return chkNumber(this)" autocomplete="off"
+                                                               ondrag="return false;" ondrop="return false;"
+                                                               onpaste="return false;"
+                                                               onmousedown="noRightClick(event);"
+                                                               onkeydown="return noPaste(event);"><font color="#FF0000"
+                                                                                                        size="-1">**
+                    หมายเลขโทรศัพท์ 10 หลัก กรณีไม่มี ให้ใช้เบอร์โทรศัพท์เดียวกับผู้สมัคร</font></td>
+            </tr>
 
-			  %&gt;&nbsp;&nbsp;</td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#CEDAC3">หมายเลขโทรศัพท์ : </td>
-          <td colspan="2" bgcolor="#CEDAC3">&nbsp;<input name="FTELL" type="text" size="14" maxlength="10" onkeypress="return chkNumber(this)" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);"><font color="#FF0000" size="-1">** หมายเลขโทรศัพท์ 10 หลัก กรณีไม่มี ให้ใช้เบอร์โทรศัพท์เดียวกับผู้สมัคร</font></td>
-        </tr>
-
-        <tr>
-          <td align="right" bgcolor="#BDCDAC">ชื่อมารดาผู้ให้กำเนิด : </td>
-          <td colspan="2" bgcolor="#BDCDAC">&nbsp;<input name="MFName" type="text" size="15" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);" onkeyup="isThaivar(this.value,this)">&nbsp;นามสกุล : <input name="MLName" type="text" size="15" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);" onkeyup="isThaivar(this.value,this)"></td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#BDCDAC">เลขประจำตัวประชาชน : </td>
-          <td colspan="2" bgcolor="#BDCDAC">&nbsp;<input name="MID13" type="text" size="14" maxlength="13" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);" onkeypress="return chkNumber(this)">
-            สถานะ :
-            <select name="MStat">
-              <option value="1">มีชีวิต</option>
-              <option value="0">ถึงแก่กรรม</option>
-            </select></td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#BDCDAC">อาชีพมารดา :&nbsp;</td>
-          <td colspan="2" bgcolor="#BDCDAC">&nbsp;&lt;%
-			Set Conn = Server.Createobject("ADODB.Connection")
-			Conn.Open "Driver={SQL Server};Server=Precadet64\sqlexpress;Database=PCA64;UID=sa;PWD=nuuiim@2547!;"
-			SQL = "SELECT * FROM PROF Order by PROFID"
-			Set Rs = Server.CreateObject("ADODB.Recordset")
-			Rs.Open SQL, Conn, 1,3
-			Response.Write("<select name="MPROF">")
-			Do While Not Rs.EOF
-				Response.Write("<option value="&amp;Rs(" profid")&"="">"&amp;Rs("PROFName")&amp;"</option>")
-			Rs.MoveNext
-			Loop
-			Response.Write("</select>")
-			Rs.Close
-			Conn.close
-
-			  %&gt;&nbsp;&nbsp;</td>
-          </tr>
-        <tr>
-          <td align="right" bgcolor="#BDCDAC">หมายเลขโทรศัพท์ : </td>
-          <td colspan="2" bgcolor="#BDCDAC">&nbsp;<input name="MTELL" type="text" size="14" maxlength="10" onkeypress="return chkNumber(this)" autocomplete="off" ondrag="return false;" ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);" onkeydown="return noPaste(event);"><font color="#FF0000" size="-1">** หมายเลขโทรศัพท์ 10 หลัก กรณีไม่มี ให้ใช้เบอร์โทรศัพท์เดียวกับผู้สมัคร</font></td>
-        </tr>
-        <tr>
-          <td colspan="3" bgcolor="#BDCDAC">&nbsp;</td>
-          </tr>
-        <tr>
-          <td colspan="3" bgcolor="#6D9048">&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FFFFFF"><strong>การขอใช้สิทธิ์คะแนนเพิ่ม </strong></font><a href="Document.asp?P=17" target="_blank"><font color="#FFFFFF"> [ ดูระเบียบการ เกี่ยวกับคะแนนเพิ่ม ]</font></a></td>
-          </tr>
-        <tr>
-          <td colspan="3" bgcolor="#EAEFE5">
-   ข้อ 19.1 ผู้ที่สำเร็จการฝึกวิชาทหาร<br><div class="tooltip1" align="left"><img src="image/view.png" width="33" height="19"><br>
-  <span class="tooltip1text">ข้อ 19.1 ผู้ที่สำเร็จการฝึกวิชาทหารตามหลักสูตรของกระทรวงกลาโหม<br>19.1.1 ชั้นปีที่ 1 เพิ่มให้ร้อยละ 3 ของคะแนนเต็ม<br>
+            <tr>
+                <td align="right" bgcolor="#BDCDAC">ชื่อมารดาผู้ให้กำเนิด :</td>
+                <td colspan="2" bgcolor="#BDCDAC">&nbsp;<input name="MFName" type="text" size="15" autocomplete="off"
+                                                               ondrag="return false;" ondrop="return false;"
+                                                               onpaste="return false;"
+                                                               onmousedown="noRightClick(event);"
+                                                               onkeydown="return noPaste(event);"
+                                                               onkeyup="isThaivar(this.value,this)">&nbsp;นามสกุล :
+                    <input name="MLName" type="text" size="15" autocomplete="off" ondrag="return false;"
+                           ondrop="return false;" onpaste="return false;" onmousedown="noRightClick(event);"
+                           onkeydown="return noPaste(event);" onkeyup="isThaivar(this.value,this)"></td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#BDCDAC">เลขประจำตัวประชาชน :</td>
+                <td colspan="2" bgcolor="#BDCDAC">&nbsp;<input name="MID13" type="text" size="14" maxlength="13"
+                                                               autocomplete="off" ondrag="return false;"
+                                                               ondrop="return false;" onpaste="return false;"
+                                                               onmousedown="noRightClick(event);"
+                                                               onkeydown="return noPaste(event);"
+                                                               onkeypress="return chkNumber(this)">
+                    สถานะ :
+                    <select name="MStat">
+                        <option value="1">มีชีวิต</option>
+                        <option value="0">ถึงแก่กรรม</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#BDCDAC">อาชีพมารดา :&nbsp;</td>
+                <td colspan="2" bgcolor="#BDCDAC"> <input name="mom_occu" type="text" size="14">
+{#                    &nbsp;&lt;%#}
+{#                    Set Conn = Server.Createobject("ADODB.Connection")#}
+{#                    Conn.Open "Driver={SQL Server};Server=Precadet64\sqlexpress;Database=PCA64;UID=sa;PWD=nuuiim@2547!;"#}
+{#                    SQL = "SELECT * FROM PROF Order by PROFID"#}
+{#                    Set Rs = Server.CreateObject("ADODB.Recordset")#}
+{#                    Rs.Open SQL, Conn, 1,3#}
+{#                    Response.Write("<select name="MPROF">")#}
+{#                        Do While Not Rs.EOF#}
+{#                        Response.Write("#}
+{#                        <option value="&amp;Rs(" profid#}
+{#                        ")&"="">"&amp;Rs("PROFName")&amp;"</option>")#}
+{#                        Rs.MoveNext#}
+{#                        Loop#}
+{#                        Response.Write("</select>")#}
+{#                    Rs.Close#}
+{#                    Conn.close#}
+{##}
+{#                    %&gt;&nbsp;&nbsp;#}
+                </td>
+            </tr>
+            <tr>
+                <td align="right" bgcolor="#BDCDAC">หมายเลขโทรศัพท์ :</td>
+                <td colspan="2" bgcolor="#BDCDAC">&nbsp;<input name="MTELL" type="text" size="14" maxlength="10"
+                                                               onkeypress="return chkNumber(this)" autocomplete="off"
+                                                               ondrag="return false;" ondrop="return false;"
+                                                               onpaste="return false;"
+                                                               onmousedown="noRightClick(event);"
+                                                               onkeydown="return noPaste(event);"><font color="#FF0000"
+                                                                                                        size="-1">**
+                    หมายเลขโทรศัพท์ 10 หลัก กรณีไม่มี ให้ใช้เบอร์โทรศัพท์เดียวกับผู้สมัคร</font></td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#BDCDAC">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#6D9048">&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FFFFFF"><strong>การขอใช้สิทธิ์คะแนนเพิ่ม </strong></font><a
+                        href="Document.asp?P=17" target="_blank"><font color="#FFFFFF"> [ ดูระเบียบการ
+                    เกี่ยวกับคะแนนเพิ่ม ]</font></a></td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#EAEFE5">
+                    ข้อ 19.1 ผู้ที่สำเร็จการฝึกวิชาทหาร<br>
+                    <div class="tooltip1" align="left"><br>
+                        <span class="tooltip1text">ข้อ 19.1 ผู้ที่สำเร็จการฝึกวิชาทหารตามหลักสูตรของกระทรวงกลาโหม<br>19.1.1 ชั้นปีที่ 1 เพิ่มให้ร้อยละ 3 ของคะแนนเต็ม<br>
 19.1.2 ชั้นปีที่ 2 เพิ่มให้ร้อยละ 4 ของคะแนนเต็ม<br>
 19.1.3 ชั้นปีที่ 3 เพิ่มให้ร้อยละ 5 ของคะแนนเต็ม<br>
 19.1.4 ชั้นปีที่ 4 เพิ่มให้ร้อยละ 6 ของคะแนนเต็ม<br>
 19.1.5 ชั้นปีที่ 5 เพิ่มให้ร้อยละ 7 ของคะแนนเต็ม</span>
-</div></td>
-          </tr>
-        <tr>
-          <td colspan="3" align="left" bgcolor="#EAEFE5">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="A191" type="radio" value="0" checked="checked">
-ไม่มี / ไม่ขอใช้สิทธิ์          <input name="A191" type="radio" value="1"> ชั้นปีที่ 1
-          <input name="A191" type="radio" value="2"> ชั้นปีที่ 2
-          <input name="A191" type="radio" value="3"> ชั้นปีที่ 3
-          <input name="A191" type="radio" value="4"> ชั้นปีที่ 4
-          <input name="A191" type="radio" value="5"> ชั้นปีที่ 5
-          </td>
-          </tr>
-        <tr>
-          <td colspan="3" align="left" bgcolor="#BDCDAC">ข้อ 19.2 บุตรข้าราชการกระทรวงกลาโหม/สำนักงานตำรวจแห่งชาติ<br>
-<div class="tooltip2" align="left"><img src="image/view.png" width="33" height="19">
-<span class="tooltip2text">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="left" bgcolor="#EAEFE5">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="A191" type="radio" value="0" checked="checked">
+                    ไม่มี / ไม่ขอใช้สิทธิ์ <input name="A191" type="radio" value="1"> ชั้นปีที่ 1
+                    <input name="A191" type="radio" value="2"> ชั้นปีที่ 2
+                    <input name="A191" type="radio" value="3"> ชั้นปีที่ 3
+                    <input name="A191" type="radio" value="4"> ชั้นปีที่ 4
+                    <input name="A191" type="radio" value="5"> ชั้นปีที่ 5
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="left" bgcolor="#BDCDAC">ข้อ 19.2 บุตรข้าราชการกระทรวงกลาโหม/สำนักงานตำรวจแห่งชาติ<br>
+                    <div class="tooltip2" align="left">
+                        <span class="tooltip2text">
 19.2 บุตรของข้าราชการในสังกัดกระทรวงกลาโหม หรือสำนักงานตำรวจแห่งชาติ<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ที่มีเวลารับราชการดังต่อไปนี้ ให้ได้รับคะแนนเพิ่มตามลำดับ ดังนี้<br>
@@ -267,34 +351,41 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ของวันรับสมัครในปีนั้น ๆ</span>
-</div></td>
-        </tr>
-        <tr>
-          <td colspan="3" bgcolor="#BDCDAC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input name="A192" type="radio" value="0" checked="checked">
-ไมมี / ไม่ขอใช้สิทธิ์ </td>
-        </tr>
-        <tr>
-          <td colspan="3" bgcolor="#BDCDAC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="A192" type="radio" value="1">
-            มีสิทธิ์ตามระเบียการข้อ 19.2.1 รับราชการไม่น้อยกว่า 15 ปี หรือได้รับพระราชทานเหรียญ จักรมาลา</td>
-          </tr>
-        <tr>
-          <td colspan="3" bgcolor="#BDCDAC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input name="A192" type="radio" value="2">
-            มีสิทธิ์ตามระเบียการข้อ 19.2.2 รับราชการไม่น้อยกว่า 10 ปี</td>
-          </tr>
-        <tr>
-          <td colspan="3" bgcolor="#BDCDAC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input name="A192" type="radio" value="3">
-            มีสิทธิ์ตามระเบียการข้อ 19.2.3  รับราชการไม่น้อยกว่า 5 ปี</td>
-          </tr>
-        <tr>
-          <td colspan="3" bgcolor="#EAEFE5"><div class="tooltip3" align="left">
-ข้อ 19.3 ผู้ที่เป็นบุตรของทหาร - ตำรวจ ข้าราชการ เจ้าหน้าที่ของรัฐ พนักงานราชการหรือลูกจ้าง<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
- มีสิทธินับเวลาราชการเป็นทวีคูณตามกฎหมาย ว่าด้วยบำเหน็จบำนาญข้าราชการ<br>
- <div class="tooltip3" align="left"><img src="image/view.png" width="33" height="19">
- <span class="tooltip3text">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#BDCDAC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="A192" type="radio" value="0" checked="checked">
+                    ไมมี / ไม่ขอใช้สิทธิ์
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#BDCDAC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+                        name="A192" type="radio" value="1">
+                    มีสิทธิ์ตามระเบียการข้อ 19.2.1 รับราชการไม่น้อยกว่า 15 ปี หรือได้รับพระราชทานเหรียญ จักรมาลา
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#BDCDAC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="A192" type="radio" value="2">
+                    มีสิทธิ์ตามระเบียการข้อ 19.2.2 รับราชการไม่น้อยกว่า 10 ปี
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#BDCDAC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="A192" type="radio" value="3">
+                    มีสิทธิ์ตามระเบียการข้อ 19.2.3 รับราชการไม่น้อยกว่า 5 ปี
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#EAEFE5">
+                    <div class="tooltip3" align="left">
+                        ข้อ 19.3 ผู้ที่เป็นบุตรของทหาร - ตำรวจ ข้าราชการ เจ้าหน้าที่ของรัฐ พนักงานราชการหรือลูกจ้าง<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                        มีสิทธินับเวลาราชการเป็นทวีคูณตามกฎหมาย ว่าด้วยบำเหน็จบำนาญข้าราชการ<br>
+                        <div class="tooltip3" align="left">
+                            <span class="tooltip3text">
 19.3 ผู้ที่เป็นบุตรของทหาร - ตำรวจ ข้าราชการ เจ้าหน้าที่ของรัฐ พนักงานราชการ<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 หรือลูกจ้าง ซึ่งได้ปฏิบัติหน้าที่ทางยุทธการร่วมกับทหาร ระหว่างเวลาที่มีการรบ<br>
@@ -317,24 +408,27 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 จากภัยคุกคามทั้งภายนอกและภายในประเทศ เพิ่มให้ร้อยละ 5 ของคะแนนเต็ม<br>
 
-            </span></div></div></td>
-          </tr>
-        <tr>
-          <td colspan="3" bgcolor="#EAEFE5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="A193" type="radio" value="0" checked="checked">
-ไม่มี  ไม่ขอใช้สิทธิ์
-<input name="A193" type="radio" value="1">
-มีสิทธิ์ ขอใช้สิทธิ์
-       </td>
-          </tr>
-        <tr>
-          <td colspan="3" bgcolor="#BDCDAC">
-ข้อ 19.4 ผู้ที่เป็นบุตรของทหาร - ตำรวจ ข้าราชการ เจ้าหน้าที่ของรัฐ พนักงานราชการ<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;หรือลูกจ้าง ซึ่งต้องประสบอันตรายถึงทุพพลภาพ<br>
-<div class="tooltip4" align="left">
-<img src="image/view.png" width="33" height="19">
-<br>
-<span class="tooltip4text">
+            </span></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#EAEFE5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="A193" type="radio" value="0" checked="checked">
+                    ไม่มี ไม่ขอใช้สิทธิ์
+                    <input name="A193" type="radio" value="1">
+                    มีสิทธิ์ ขอใช้สิทธิ์
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#BDCDAC">
+                    ข้อ 19.4 ผู้ที่เป็นบุตรของทหาร - ตำรวจ ข้าราชการ เจ้าหน้าที่ของรัฐ พนักงานราชการ<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;หรือลูกจ้าง
+                    ซึ่งต้องประสบอันตรายถึงทุพพลภาพ<br>
+                    <div class="tooltip4" align="left">
+
+                        <br>
+                        <span class="tooltip4text">
 19.4 ผู้ที่เป็นบุตรของทหาร - ตำรวจ ข้าราชการ เจ้าหน้าที่ของรัฐ พนักงานราชการ<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 หรือลูกจ้าง ซึ่งต้องประสบอันตรายถึงทุพพลภาพ ในขณะปฏิบัติราชการในหน้าที่<br>
@@ -368,71 +462,76 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 เพิ่มให้ร้อยละ 10 ของคะแนนเต็ม<br>
 </span></div>
-            </td>
-          </tr>
-        <tr>
-          <td colspan="2" bgcolor="#BDCDAC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="A194" type="radio" value="0" checked="checked">
-ไม่มี  ไม่ขอใช้สิทธิ์
-<input name="A194" type="radio" value="1">
-มีสิทธิ์ ขอใช้สิทธิ์</td>
-          <td bgcolor="#BDCDAC">&nbsp;</td>
-        </tr>
-        <tr>
-          <td colspan="3" bgcolor="#EAEFE5">ข้อ 19.5 บุตรของทหาร - ตำรวจ ที่ได้ปฏิบัติหน้าที่ในการปราบปรามโจรผู้ร้ายจนถึง แก่ทุพพลภาพ<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; หรือถึงแก่ชีวิต<br>
-<div class="tooltip5" align="left">
-<img src="image/view.png" width="33" height="19"><br>
-<span class="tooltip5text">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" bgcolor="#BDCDAC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="A194" type="radio" value="0" checked="checked">
+                    ไม่มี ไม่ขอใช้สิทธิ์
+                    <input name="A194" type="radio" value="1">
+                    มีสิทธิ์ ขอใช้สิทธิ์
+                </td>
+                <td bgcolor="#BDCDAC">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#EAEFE5">ข้อ 19.5 บุตรของทหาร - ตำรวจ
+                    ที่ได้ปฏิบัติหน้าที่ในการปราบปรามโจรผู้ร้ายจนถึง แก่ทุพพลภาพ<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; หรือถึงแก่ชีวิต<br>
+                    <div class="tooltip5" align="left">
+                       <br>
+                        <span class="tooltip5text">
 19.5 บุตรของทหาร - ตำรวจ ที่ได้ปฏิบัติหน้าที่ในการปราบปรามโจรผู้ร้าย<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 จนถึง แก่ทุพพลภาพ หรือถึงแก่ชีวิต หรือผู้ที่ได้ช่วยเหลือราชการในการ<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ปราบปรามโจรผู้ร้ายจนถึงแก่ทุพพลภาพ หรือ ถึงแก่ชีวิต ซึ่งได้รับการรับรอง<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 จากสำนักงานตำรวจแห่งชาติ เพิ่มให้ร้อยละ 10 ของคะแนนเต็ม</span>
-<div>
-</div></div></td>
-          </tr>
-        <tr>
-          <td colspan="3" bgcolor="#EAEFE5" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="A195" type="radio" value="0" checked="checked">
-ไม่มี  ไม่ขอใช้สิทธิ์
-<input name="A195" type="radio" value="1">
-มีสิทธิ์ ขอใช้สิทธิ์</td>
-          </tr>
-        <tr>
-          <td colspan="3">&nbsp;</td>
-          </tr>
-        <tr>
-          <td colspan="3" align="center"><br>
-          <input type="checkbox" value="1" name="chk" onclick="apply()">
-          ยืนยันข้อมูลถูกต้อง<br>
-          <input name="sub" type="submit" value="  บันทึกข้อมูลผู้สมัคร  " disabled="" class="button"></td>
-          </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td colspan="3" bgcolor="#6D9048">&nbsp;</td>
-          </tr>
-      </tbody>
+                        <div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#EAEFE5" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="A195" type="radio" value="0" checked="checked">
+                    ไม่มี ไม่ขอใช้สิทธิ์
+                    <input name="A195" type="radio" value="1">
+                    มีสิทธิ์ ขอใช้สิทธิ์
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center"><br>
+                    <input type="checkbox" value="1" name="chk" onclick="apply()">
+                    ยืนยันข้อมูลถูกต้อง<br>
+                    <input name="sub" type="submit" value="  บันทึกข้อมูลผู้สมัคร  " disabled="" class="button"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3" bgcolor="#6D9048">&nbsp;</td>
+            </tr>
+            </tbody>
 
-    {% for field in form.visible_fields %}
-      <tr>
-        <th>{{ field.label_tag }}</th>
-        <td>
-          {{ field.errors }}
-          {% render_field field style="border: 2px dashed red;" placeholder=field.name %}
-          {{ field.help_text }}
-        </td>
-      </tr>
-    {% endfor %}
-  </table>
+            {% for field in form.visible_fields %}
+                <tr>
+                    <th>{{ field.label_tag }}</th>
+                    <td>
+                        {{ field.errors }}
+                        {% render_field field style="border: 2px dashed red;" placeholder=field.name %}
+                        {{ field.help_text }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
 
-    <input type="submit" class='btn btn-primary' value="Submit">
+{#        <input type="submit" class='btn btn-primary' value="Submit">#}
 
-  </form>
+    </form>
 
 
 {% endblock %}

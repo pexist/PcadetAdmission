@@ -1,6 +1,7 @@
 # Create your views here.
 import datetime
-
+from barcode import EAN13
+from barcode.writer import ImageWriter
 from django.shortcuts import render, redirect
 from django.views.generic import (DetailView,
                                   CreateView)
@@ -113,6 +114,15 @@ def pca_status(request):
     # 5 field for register_number, info input, image upload, payment, print_exam_id_card
     return render(request, 'pca65/status.html')
 
+# status of application
+def exam_card(request):
+    # 5 field for register_number, info input, image upload, payment, print_exam_id_card
+    return render(request, 'pca65/exam_card.htm')
+
+# status of application
+def pca_form(request):
+    # 5 field for register_number, info input, image upload, payment, print_exam_id_card
+    return render(request, 'pca65/student_form.html')
 
 # # upload image
 # def upload(request):
@@ -134,10 +144,20 @@ def image_upload_view(request):
     return render(request, 'pca65/upload.html', {'form': form})
 
 
-
-
 # print payment detail
 def bill(request):
+    from barcode.writer import ImageWriter
+    ean = EAN13('5901234123457', writer=ImageWriter())
+    fullname = ean.save('static/bill/ean13_barcode')
+    print(fullname)
+    # # New in v0.4.2
+    from io import BytesIO
+    fp = BytesIO()
+    ean.write(fp)
+    #
+    # with open('static/bill/barcode.jpeg','wb') as f:
+    #     EAN13('12345678', writer=ImageWriter()).write(f)
+
     return render(request, 'pca65/print_bill.htm')
 
 
